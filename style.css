@@ -32,13 +32,29 @@ html {
   margin: 15px;
 }
 
-.blackPeice {
+.blackPiece {
   fill: black;
 }
 
-.whitePeice {
+.whitePiece {
   fill: white;
 }
 svg {
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
+
+.selectedSquareBlack{
+	background-color : #597141;
+	width: 71px;
+  height: 71px;
+  border: 2px solid #334125;
+	
+}
+.selectedSquareWhite{
+	background-color : #cdcd98;
+	width: 71px;
+  height: 71px;
+  border: 2px solid #78783a;
+}
+
+
