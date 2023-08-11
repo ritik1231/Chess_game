@@ -2,7 +2,7 @@
 let chessBoard = document.querySelector("#chessBoard");
 
 // Array containing the initial arrangement of chess pieces
-const chessPeices = [
+const chessPieces = [
   brook, bknight, bbishop, bqueen, bking, bbishop, bknight, brook,
   bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn,
   "", "", "", "", "", "", "", "",
@@ -14,7 +14,7 @@ const chessPeices = [
 ]
 
 // An array of strings representing the names of chess pieces
-let chessPeicesString = [
+let chessPiecesString = [
   'brook', 'bknight', 'bbishop', 'bqueen', 'bking', 'bbishop', 'bknight', 'brook',
   'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn',
   "", "", "", "", "", "", "", "",
