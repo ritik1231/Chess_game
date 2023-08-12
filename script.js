@@ -26,7 +26,7 @@ let chessPiecesString = [
 ]
 
 // Array to store the selected piece's square ID
-let choosenPieceID = [];
+let chosenPieceID = [];
 
 // Function to create the chess board and populate it with pieces
 function createBoard() {
@@ -88,20 +88,20 @@ function pieceDeselector(pieceID, row){
 // Function called when a square is clicked
 function movePiece() {
   let pieceID = this.getAttribute("square-id");
-  choosenPieceID.push(pieceID);
+  chosenPieceID.push(pieceID);
   row = Math.floor((63 - pieceID) / 8) + 1;
-  if (choosenPieceID.length === 1 && chessPiecesString[pieceID] !== "") {
+  if (chosenPieceID.length === 1 && chessPiecesString[pieceID] !== "") {
     pieceSelector(pieceID,row);
   }
-  if (allSquares[choosenPieceID[0]].innerHTML === "") {
-    choosenPieceID = [];
+  if (allSquares[chosenPieceID[0]].innerHTML === "") {
+    chosenPieceID = [];
   }
-  if (choosenPieceID.length === 2) {
-    let pec1 = choosenPieceID[0];
-    let pec2 = choosenPieceID[1];
-    if (choosenPieceID[0] === choosenPieceID[1]) {
+  if (chosenPieceID.length === 2) {
+    let pec1 = chosenPieceID[0];
+    let pec2 = chosenPieceID[1];
+    if (chosenPieceID[0] === chosenPieceID[1]) {
       pieceDeselector(pieceID,row)
-      choosenPieceID = [];
+      chosenPieceID = [];
     } else if (
       chessPiecesString[pec2] !== "" &&
       chessPiecesString[pec2].charAt(0) === chessPiecesString[pec1].charAt(0)
@@ -109,8 +109,8 @@ function movePiece() {
       pieceID = pec1;
       row = Math.floor((63 - pieceID) / 8) + 1;
       pieceDeselector(pieceID,row)
-      choosenPieceID = [];
-      choosenPieceID.push(pec2);
+      chosenPieceID = [];
+      chosenPieceID.push(pec2);
       pieceID = pec2;
       row = Math.floor((63 - pieceID) / 8) + 1;
       pieceSelector(pieceID,row)
@@ -120,13 +120,13 @@ function movePiece() {
 
 // Function to perform the move of the selected piece
 function checkMove() {
-  chessPiecesString[choosenPieceID[1]] = chessPiecesString[choosenPieceID[0]];
-  chessPiecesString[choosenPieceID[0]] = "";
-  allSquares[choosenPieceID[1]].innerHTML = allSquares[choosenPieceID[0]].innerHTML;
-  allSquares[choosenPieceID[0]].innerHTML = "";
-  pieceID = choosenPieceID[0];
+  chessPiecesString[chosenPieceID[1]] = chessPiecesString[chosenPieceID[0]];
+  chessPiecesString[chosenPieceID[0]] = "";
+  allSquares[chosenPieceID[1]].innerHTML = allSquares[chosenPieceID[0]].innerHTML;
+  allSquares[chosenPieceID[0]].innerHTML = "";
+  pieceID = chosenPieceID[0];
   row = Math.floor((63 - pieceID) / 8) + 1;
   pieceDeselector(pieceID,row)
-  choosenPieceID = [];
+  chosenPieceID = [];
 }
 
