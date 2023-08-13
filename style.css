@@ -45,16 +45,13 @@ svg {
 
 .selectedSquareBlack{
 	background-color : #597141;
-	width: 71px;
-  height: 71px;
-  border: 2px solid #334125;
+	outline: 2px solid #334125;
+    outline-offset: -2px;
 	
 }
 .selectedSquareWhite{
 	background-color : #cdcd98;
-	width: 71px;
-  height: 71px;
-  border: 2px solid #78783a;
+	outline: 2px solid #78783a;
+    outline-offset: -2px;
 }
-
 
