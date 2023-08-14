@@ -4,26 +4,26 @@ let valid = [];
 
 // Array containing the initial arrangement of chess pieces
 const chessPieces = [
-  brook, bknight, bbishop, bqueen, bking, bbishop, bknight, brook,
+  brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
   bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn,
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   wpawn, wpawn, wpawn, wpawn, wpawn, wpawn, wpawn, wpawn,
-  wrook, wknight, wbishop, wqueen, wking, wbishop, wknight, wrook
+  wrook, wnight, wbishop, wqueen, wking, wbishop, wnight, wrook
 ]
 
 // An array of strings representing the names of chess pieces
 let chessPiecesString = [
-  'brook', 'bknight', 'bbishop', 'bqueen', 'bking', 'bbishop', 'bknight', 'brook',
+  'brook', 'bnight', 'bbishop', 'bqueen', 'bking', 'bbishop', 'bnight', 'brook',
   'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn', 'bpawn',
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   "", "", "", "", "", "", "", "",
   'wpawn', 'wpawn', 'wpawn', 'wpawn', 'wpawn', 'wpawn', 'wpawn', 'wpawn',
-  'wrook', 'wknight', 'wbishop', 'wqueen', 'wking', 'wbishop', 'wknight', 'wrook'
+  'wrook', 'wnight', 'wbishop', 'wqueen', 'wking', 'wbishop', 'wnight', 'wrook'
 ]
 
 // Array to store the selected piece's square ID
