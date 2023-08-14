@@ -10,7 +10,12 @@ html {
   display: flex;
   flex-wrap: wrap;
 }
-
+body {
+  background-image: url('chess-bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 100%;
+}
 
 
 .square {
@@ -19,11 +24,11 @@ html {
 }
 
 .black {
-  background-color: rgb(118,150,86);
+  background-color: #769656;
 }
 
 .white {
-  background-color: rgb(219,219,180);
+  background-color: #dbdbb4;
 }
 
 .square svg {
@@ -44,9 +49,11 @@ svg {
 }
 
 .selectedSquareBlack{
+
 	background-color : #597141;
 	outline: 2px solid #334125;
     outline-offset: -2px;
+   
 	
 }
 .selectedSquareWhite{
@@ -54,4 +61,10 @@ svg {
 	outline: 2px solid #78783a;
     outline-offset: -2px;
 }
+
+.validSquarse{
+  outline: 3px dashed #1B4965;
+    outline-offset: -5px;
+}
+
 
