@@ -1,7 +1,7 @@
 // Select the chess board element from the HTML
 let chessBoard = document.querySelector("#chessBoard");
 let valid = [];
-
+let chance = 'white';
 // Array containing the initial arrangement of chess pieces
 const chessPieces = [
   brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
@@ -99,7 +99,7 @@ function checkMove() {
   let pieceID = this.getAttribute("square-id");
   chosenPieceID.push(pieceID);
   row = Math.floor((63 - pieceID) / 8) + 1;
-  if (allSquares[chosenPieceID[0]].innerHTML === "") {
+  if (allSquares[chosenPieceID[0]].innerHTML === ""||chessPiecesString[chosenPieceID[0]].charAt(0)!==chance.charAt(0)) {
     chosenPieceID = [];
   }
   if (chosenPieceID.length === 1 && chessPiecesString[pieceID] !== "") {
@@ -127,6 +127,7 @@ function checkMove() {
       chessPiecesString[chosenPieceID[0]] === "bnight"
     )
       checkNight(pieceID);
+    else checkKing(pieceID);
     pieceSelector(pieceID, row);
   }
   if (chosenPieceID.length === 2) {
@@ -161,7 +162,8 @@ function movePiece() {
   row = Math.floor((63 - pieceID) / 8) + 1;
   pieceDeselector(pieceID, row);
   chosenPieceID = [];
-  valid = [];
+  if(chance==='white') chance='black';
+  else chance='white';
 }
 
 
