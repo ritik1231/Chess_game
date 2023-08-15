@@ -90,8 +90,10 @@ function pieceSelector(pieceID, row) {
   }
   // Loop through all squares to apply validSquares class
   for (let i = 0; i < 64; i++) {
-    if (valid[i] === 1 || valid[i] === 2)
+    if (valid[i] === 1)
       allSquares[i].classList.add("validSquares");
+    else if(valid[i]==2)
+      allSquares[i].classList.add("validTakes");
   }
 }
 
@@ -109,8 +111,10 @@ function pieceDeselector(pieceID, row) {
   }
   // Loop through all squares to remove validSquares class
   for (let i = 0; i < 64; i++) {
-    if (valid[i] === 1 || valid[i] === 2)
+    if (valid[i] === 1)
       allSquares[i].classList.remove("validSquares");
+    else if(valid[i]==2)
+      allSquares[i].classList.remove("validTakes");
   }
   // Reset the valid array to an empty array
   valid = [];
