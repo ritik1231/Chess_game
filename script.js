@@ -1,5 +1,7 @@
 // Select the chess board element from the HTML
 let chessBoard = document.querySelector("#chessBoard");
+// Select the back ground chess board element from the HTML
+let chessBoard1 = document.querySelector("#chessBoard1");
 // Array for calculating valid moves
 let valid = [];
 // Flag for switching turns of black and white after every move
