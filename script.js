@@ -2,6 +2,7 @@
 let chessBoard = document.querySelector("#chessBoard");
 let valid = [];
 let chance = 'white';
+let whiteK=false,blackK=false,whiteShortRook=false,whiteLongRook=false,blackShortRook=false,blackLongRook=false;
 // Array containing the initial arrangement of chess pieces
 const chessPieces = [
   brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
@@ -153,6 +154,13 @@ function checkMove() {
 
 // Function to perform the move of the selected piece
 function movePiece() {
+  if(blackLongRook===false && chosenPieceID[0] == 0) blackLongRook=true;
+  if(blackShortRook===false && chosenPieceID[0] == 7) blackShortRook=true;
+  if(blackK===false && chosenPieceID[0] == 4) blackK=true;
+  if(whiteK===false && chosenPieceID[0] == 60) whiteK=true;
+  if(whiteLongRook===false && chosenPieceID[0] == 56) whiteLongRook=true;
+  if(whiteShortRook===false && chosenPieceID[0] == 63) whiteShortRook=true;
+
   chessPiecesString[chosenPieceID[1]] = chessPiecesString[chosenPieceID[0]];
   chessPiecesString[chosenPieceID[0]] = "";
   allSquares[chosenPieceID[1]].innerHTML =
@@ -161,9 +169,28 @@ function movePiece() {
   pieceID = chosenPieceID[0];
   row = Math.floor((63 - pieceID) / 8) + 1;
   pieceDeselector(pieceID, row);
+  if((chosenPieceID[0]==4 ||chosenPieceID[0]==60) && (chosenPieceID[1]==6 || chosenPieceID[1]==2 ||chosenPieceID[1]==62 || chosenPieceID[1]==58)) castling(chosenPieceID)
   chosenPieceID = [];
   if(chance==='white') chance='black';
   else chance='white';
+}
+
+function castling(chosenPieceID) {
+  if(chosenPieceID[1]-chosenPieceID[0]>0) {
+    let rookid=parseInt(chosenPieceID[1])+1;
+    chessPiecesString[parseInt(chosenPieceID[1])-1]=chessPiecesString[rookid];
+    chessPiecesString[rookid]=""
+    allSquares[parseInt(chosenPieceID[1])-1].innerHTML =
+    allSquares[rookid].innerHTML;
+    allSquares[rookid].innerHTML = "";
+  }else{
+    let rookid=parseInt(chosenPieceID[1])-2;
+    chessPiecesString[parseInt(chosenPieceID[1])+1]=chessPiecesString[rookid];
+    chessPiecesString[rookid]=""
+    allSquares[parseInt(chosenPieceID[1])+1].innerHTML =
+    allSquares[rookid].innerHTML;
+    allSquares[rookid].innerHTML = "";
+  }
 }
 
 
