@@ -71,11 +71,31 @@ function createBoard() {
   });
 }
 
+// Creates a same layer of the board behind the real board
+function create() {
+  chessPieces.forEach((chessPiece, i) => {
+    // Create a new <div> element for the square
+    let row = Math.floor((63 - i) / 8) + 1;
+    let squar = document.createElement("div");
+    // Add the "square" class to the <div> element
+    squar.classList.add("square");
+    // Check if the row is even or odd and add appropriate class (black or white)
+    if (row % 2 === 0) {
+      squar.classList.add(i % 2 === 0 ? "white" : "black");
+    } else {
+      squar.classList.add(i % 2 === 0 ? "black" : "white");
+    }
+    chessBoard1.append(squar);
+  });
+}
+
 // Call the function to create the chess board
+create();
 createBoard();
 
 // Select all the squares on the chess board
 const allSquares = document.querySelectorAll("#chessBoard .square");
+const allSquares1 = document.querySelectorAll("#chessBoard1 .square");
 // Function to visually indicate the selected piece
 function pieceSelector(pieceID, row) {
   // Check if the row is even or odd and update square classes accordingly
@@ -90,10 +110,11 @@ function pieceSelector(pieceID, row) {
   }
   // Loop through all squares to apply validSquares class
   for (let i = 0; i < 64; i++) {
-    if (valid[i] === 1)
-      allSquares[i].classList.add("validSquares");
-    else if(valid[i]==2)
+    if (valid[i] === 1) allSquares[i].classList.add("validSquares");
+    else if (valid[i] == 2) {
       allSquares[i].classList.add("validTakes");
+      allSquares1[i].classList.replace("square", "square1");
+    }
   }
 }
 
@@ -111,14 +132,16 @@ function pieceDeselector(pieceID, row) {
   }
   // Loop through all squares to remove validSquares class
   for (let i = 0; i < 64; i++) {
-    if (valid[i] === 1)
-      allSquares[i].classList.remove("validSquares");
-    else if(valid[i]==2)
+    if (valid[i] === 1) allSquares[i].classList.remove("validSquares");
+    else if (valid[i] == 2) {
       allSquares[i].classList.remove("validTakes");
+      allSquares1[i].classList.replace("square1", "square");
+    }
   }
   // Reset the valid array to an empty array
   valid = [];
 }
+
 
 // Function called when a square is clicked
 function checkMove() {
