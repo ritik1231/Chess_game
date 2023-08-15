@@ -4,10 +4,18 @@ html {
 }
 
 #chessBoard {
+  position: absolute;
   width: 600px;
   height: 600px;
   border: solid black 2px;
-  background-color: #14520b;
+  display: flex;
+  flex-wrap: wrap;
+}
+#chessBoard1 {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border: solid black 2px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -53,13 +61,14 @@ svg {
   outline-offset: -2.5px;
 }
 
-.validTakes{
+.validTakes {
   border-radius: 20px;
 }
 
-.validSquares{
-  outline: 3px solid #1B4965;
+.validSquares {
+  outline: 3px solid rgb(0, 73, 15);
   outline-offset: -30px;
+  border-radius: 50%;
 }
 
 body {
@@ -67,4 +76,9 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
+}
+.square1 {
+  background-color: rgb(0, 73, 15);
+  height: 75px;
+  width: 75px;
 }
