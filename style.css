@@ -52,10 +52,15 @@ svg {
   outline-offset: -2.5px;
 }
 
-.validSquares {
-  outline: 3px dashed #1b4965;
-  outline-offset: -5px;
+.validTakes{
+  border-radius: 20px;
 }
+
+.validSquares{
+  outline: 3px solid #1B4965;
+  outline-offset: -30px;
+}
+
 body {
   background-image: url("chess-bg.jpg");
   background-repeat: no-repeat;
