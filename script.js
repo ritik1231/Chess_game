@@ -221,7 +221,7 @@ function movePiece() {
   allSquares[chosenPieceID[0]].innerHTML = "";
   pieceID = chosenPieceID[0];
   row = Math.floor((63 - pieceID) / 8) + 1;
-  pieceDeselector(pieceID, row);
+  
   if (
     (chosenPieceID[0] == 4 || chosenPieceID[0] == 60) &&
     (chosenPieceID[1] == 6 ||
@@ -230,7 +230,11 @@ function movePiece() {
       chosenPieceID[1] == 58)
   )
     castling(chosenPieceID);
-  chosenPieceID = [];
+  if((chessPiecesString[chosenPieceID[1]]=='bpawn' && row==2) || (chessPiecesString[chosenPieceID[1]]=='wpawn' && row==7)){
+    popPieceColor = chessPiecesString[chosenPieceID[1]].charAt(0);
+     showPopup();}
+  else chosenPieceID = [];
+  pieceDeselector(pieceID, row);
   if (chance === "white") chance = "black";
   else chance = "white";
 }
@@ -260,4 +264,71 @@ function castling(chosenPieceID) {
       allSquares[rookid].innerHTML;
     allSquares[rookid].innerHTML = "";
   }
+}
+
+let userchoice
+let popup = document.getElementById("popup");
+function showPopup(){
+  popup.classList.replace("popupBoxhidden","popupBoxshow");
+}
+
+function getQueen(){
+  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+    allSquares[chosenPieceID[1]].innerHTML = bqueen;
+    chessPiecesString[chosenPieceID[1]] = 'bqueen';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
+  }
+  else{
+    allSquares[chosenPieceID[1]].innerHTML = wqueen;
+    chessPiecesString[chosenPieceID[1]] = 'wqueen';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+  }
+
+popup.classList.replace("popupBoxshow","popupBoxhidden");
+chosenPieceID = []
+}
+function getBishop(){
+  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+    allSquares[chosenPieceID[1]].innerHTML = bbishop;
+    chessPiecesString[chosenPieceID[1]] = 'bbishop';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
+  }
+  else{
+    allSquares[chosenPieceID[1]].innerHTML = wbishop;
+    chessPiecesString[chosenPieceID[1]] = 'wbishop';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+    
+  }
+  popup.classList.replace("popupBoxshow","popupBoxhidden");
+chosenPieceID = []
+}
+function getRook(){
+  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+    allSquares[chosenPieceID[1]].innerHTML = brook;
+    chessPiecesString[chosenPieceID[1]] = 'brook';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
+
+  }
+  else{
+    allSquares[chosenPieceID[1]].innerHTML = wrook;
+    chessPiecesString[chosenPieceID[1]] = 'wrook';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+
+  }
+  popup.classList.replace("popupBoxshow","popupBoxhidden");
+chosenPieceID = []
+}
+function getNight(){
+  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='w'){
+    allSquares[chosenPieceID[1]].innerHTML = wnight;
+    chessPiecesString[chosenPieceID[1]] = 'wnight';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+  }
+  else{
+    allSquares[chosenPieceID[1]].innerHTML = bnight;
+    chessPiecesString[chosenPieceID[1]] = 'bnight';
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
+  }
+  popup.classList.replace("popupBoxshow","popupBoxhidden");
+  chosenPieceID = []
 }
