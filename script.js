@@ -110,6 +110,31 @@ function pieceSelector(pieceID, row) {
       allSquares[pieceID].classList.replace("black", "selectedSquareBlack");
     else allSquares[pieceID].classList.replace("white", "selectedSquareWhite");
   }
+  if (
+    chessPiecesString[chosenPieceID[0]] === "wrook" ||
+    chessPiecesString[chosenPieceID[0]] === "brook"
+  )
+    checkRook(pieceID);
+  else if (chessPiecesString[chosenPieceID[0]] === "bpawn")
+    checkBPawn(pieceID);
+  else if (chessPiecesString[chosenPieceID[0]] === "wpawn")
+    checkWPawn(pieceID);
+  else if (
+    chessPiecesString[chosenPieceID[0]] === "wbishop" ||
+    chessPiecesString[chosenPieceID[0]] === "bbishop"
+  )
+    checkBishop(pieceID);
+  else if (
+    chessPiecesString[chosenPieceID[0]] === "wqueen" ||
+    chessPiecesString[chosenPieceID[0]] === "bqueen"
+  )
+    checkQueen(pieceID);
+  else if (
+    chessPiecesString[chosenPieceID[0]] === "wnight" ||
+    chessPiecesString[chosenPieceID[0]] === "bnight"
+  )
+    checkNight(pieceID);
+  else checkKing(pieceID);
   // Loop through all squares to apply validSquares class
   for (let i = 0; i < 64; i++) {
     if (valid[i] === 1) allSquares[i].classList.add("validSquares");
@@ -119,6 +144,7 @@ function pieceSelector(pieceID, row) {
     }
   }
 }
+
 
 // Function to remove the visual selection of a piece
 function pieceDeselector(pieceID, row) {
@@ -157,31 +183,7 @@ function checkMove() {
     chosenPieceID = [];
   }
   if (chosenPieceID.length === 1 && chessPiecesString[pieceID] !== "") {
-    if (
-      chessPiecesString[chosenPieceID[0]] === "wrook" ||
-      chessPiecesString[chosenPieceID[0]] === "brook"
-    )
-      checkRook(pieceID);
-    else if (chessPiecesString[chosenPieceID[0]] === "bpawn")
-      checkBPawn(pieceID);
-    else if (chessPiecesString[chosenPieceID[0]] === "wpawn")
-      checkWPawn(pieceID);
-    else if (
-      chessPiecesString[chosenPieceID[0]] === "wbishop" ||
-      chessPiecesString[chosenPieceID[0]] === "bbishop"
-    )
-      checkBishop(pieceID);
-    else if (
-      chessPiecesString[chosenPieceID[0]] === "wqueen" ||
-      chessPiecesString[chosenPieceID[0]] === "bqueen"
-    )
-      checkQueen(pieceID);
-    else if (
-      chessPiecesString[chosenPieceID[0]] === "wnight" ||
-      chessPiecesString[chosenPieceID[0]] === "bnight"
-    )
-      checkNight(pieceID);
-    else checkKing(pieceID);
+    
     pieceSelector(pieceID, row);
   }
   if (chosenPieceID.length === 2) {
@@ -194,7 +196,14 @@ function checkMove() {
       chessPiecesString[pec2] !== "" &&
       chessPiecesString[pec2].charAt(0) === chessPiecesString[pec1].charAt(0)
     ) {
-      chosenPieceID.splice(1);
+      pieceID = pec1
+      row = Math.floor((63 - pieceID) / 8) + 1;
+      pieceDeselector(pieceID, row);
+      chosenPieceID = []
+      pieceID = pec2
+      row = Math.floor((63 - pieceID) / 8) + 1;
+      chosenPieceID.push(pec2)
+      pieceSelector(pieceID, row);
     } else {
       if (valid[chosenPieceID[1]] === 1 || valid[chosenPieceID[1]] === 2)
         movePiece();
@@ -204,7 +213,6 @@ function checkMove() {
     }
   }
 }
-
 // Function to perform the move of the selected piece
 function movePiece() {
   if (blackLongRook === false && chosenPieceID[0] == 0) blackLongRook = true;
