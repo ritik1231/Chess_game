@@ -83,21 +83,42 @@ body {
   width: 75px;
 }
 .popupBoxhidden{
-  width : 236px;
-  height : 54px;
+  width : 1350px;
+  height : 620px;
   position: absolute;
-  background-color: blue;
-  visibility: hidden;
-}
-.popupBoxshow{
-  width : 236px;
-  height : 58px;
-  position: absolute;
-  background-color: blue;
   display: flex;
   flex-wrap: wrap;
+  visibility: hidden;
+  
+}
+.popupBoxshow{
+  width : 1350px;
+  height : 600px;
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.popBox{
+  margin : auto;
+  width : 250px;
+  height: 250px;
+  background-color: rgba(204, 203, 203, 0);
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+button {
+  border : 1px solid rgb(0, 0, 0);
+  width: 125px;
+  height: 125px;
+  outline: 3px solid rgb(117, 102, 102);
+  outline-offset: -25px;
+  border-radius: 50%;
 }
 
-button {
-  border : 1px solid rgb(211, 211, 49);
+.popBox img{
+  width : 60px;
+  height: 60px;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.6));
 }
