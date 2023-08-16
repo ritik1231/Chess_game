@@ -266,69 +266,111 @@ function castling(chosenPieceID) {
   }
 }
 
-let userchoice
+// Get a reference to the "popup" element
 let popup = document.getElementById("popup");
-function showPopup(){
-  popup.classList.replace("popupBoxhidden","popupBoxshow");
+
+// Function to show the popup
+function showPopup() {
+  // Replace the "popupBoxhidden" class with "popupBoxshow" to display the popup
+  popup.classList.replace("popupBoxhidden", "popupBoxshow");
 }
 
-function getQueen(){
-  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+// Function to handle getting a Queen chess piece
+function getQueen() {
+  // Check if the chosen chess piece is black or white
+  if (chessPiecesString[chosenPieceID[1]].charAt(0) == "b") {
+    // Update the square with the black Queen and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = bqueen;
-    chessPiecesString[chosenPieceID[1]] = 'bqueen';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
-  }
-  else{
+    chessPiecesString[chosenPieceID[1]] = "bqueen";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "blackPiece"
+    );
+  } else {
+    // Update the square with the white Queen and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = wqueen;
-    chessPiecesString[chosenPieceID[1]] = 'wqueen';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+    chessPiecesString[chosenPieceID[1]] = "wqueen";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "whitePiece"
+    );
   }
 
-popup.classList.replace("popupBoxshow","popupBoxhidden");
-chosenPieceID = []
+  // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
+  popup.classList.replace("popupBoxshow", "popupBoxhidden");
+  // Reset the chosenPieceID array
+  chosenPieceID = [];
 }
-function getBishop(){
-  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+
+// Function to handle getting a Bishop chess piece
+function getBishop() {
+  // Check if the chosen chess piece is black or white
+  if (chessPiecesString[chosenPieceID[1]].charAt(0) == "b") {
+    // Update the square with the black Bishop and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = bbishop;
-    chessPiecesString[chosenPieceID[1]] = 'bbishop';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
-  }
-  else{
+    chessPiecesString[chosenPieceID[1]] = "bbishop";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "blackPiece"
+    );
+  } else {
+    // Update the square with the white Bishop and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = wbishop;
-    chessPiecesString[chosenPieceID[1]] = 'wbishop';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
-    
+    chessPiecesString[chosenPieceID[1]] = "wbishop";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "whitePiece"
+    );
   }
-  popup.classList.replace("popupBoxshow","popupBoxhidden");
-chosenPieceID = []
+
+  // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
+  popup.classList.replace("popupBoxshow", "popupBoxhidden");
+  // Reset the chosenPieceID array
+  chosenPieceID = [];
 }
-function getRook(){
-  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='b'){
+
+// Function to handle getting a Rook chess piece
+function getRook() {
+  // Check if the chosen chess piece is black or white
+  if (chessPiecesString[chosenPieceID[1]].charAt(0) == "b") {
+    // Update the square with the black Rook and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = brook;
-    chessPiecesString[chosenPieceID[1]] = 'brook';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
-
-  }
-  else{
+    chessPiecesString[chosenPieceID[1]] = "brook";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "blackPiece"
+    );
+  } else {
+    // Update the square with the white Rook and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = wrook;
-    chessPiecesString[chosenPieceID[1]] = 'wrook';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
+    chessPiecesString[chosenPieceID[1]] = "wrook";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "whitePiece"
+    );
+  }
 
-  }
-  popup.classList.replace("popupBoxshow","popupBoxhidden");
-chosenPieceID = []
+  // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
+  popup.classList.replace("popupBoxshow", "popupBoxhidden");
+  // Reset the chosenPieceID array
+  chosenPieceID = [];
 }
-function getNight(){
-  if(chessPiecesString[chosenPieceID[1]].charAt(0)=='w'){
+
+// Function to handle getting a Knight chess piece
+function getNight() {
+  // Check if the chosen chess piece is white or black
+  if (chessPiecesString[chosenPieceID[1]].charAt(0) == "w") {
+    // Update the square with the white Knight and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = wnight;
-    chessPiecesString[chosenPieceID[1]] = 'wnight';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("whitePiece");
-  }
-  else{
+    chessPiecesString[chosenPieceID[1]] = "wnight";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "whitePiece"
+    );
+  } else {
+    // Update the square with the black Knight and adjust its class
     allSquares[chosenPieceID[1]].innerHTML = bnight;
-    chessPiecesString[chosenPieceID[1]] = 'bnight';
-    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add("blackPiece");
+    chessPiecesString[chosenPieceID[1]] = "bnight";
+    allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
+      "blackPiece"
+    );
   }
-  popup.classList.replace("popupBoxshow","popupBoxhidden");
-  chosenPieceID = []
+
+  // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
+  popup.classList.replace("popupBoxshow", "popupBoxhidden");
+  // Reset the chosenPieceID array
+  chosenPieceID = [];
 }
