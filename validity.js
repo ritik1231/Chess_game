@@ -1,9 +1,11 @@
+let direction = -1;
 // Function to check valid squares of a white pawn
 function checkWPawn(id) {
   // Calculate the row and column of the current square
   row = Math.floor(id / 8);
   const col = Math.floor(id % 8);
-
+  let i = row;
+  let j = col;
   // Check if the pawn is in its starting position (row 6)
   if (row == 6) {
     // Check if the two squares in front of the pawn are empty
@@ -33,6 +35,20 @@ function checkWPawn(id) {
     chessPiecesString[(row - 1) * 8 + col + 1].charAt(0) === "b"
   )
     valid[(row - 1) * 8 + col + 1] = 2;
+  if (
+    row > 0 &&
+    col > 0 &&
+    chessPiecesString[(row - 1) * 8 + col - 1].charAt(0) === "w"
+  )
+    valid[(row - 1) * 8 + col - 1] = 3;
+
+  // Check if there's an enemy piece diagonally to the right of the pawn
+  if (
+    row > 0 &&
+    col < 7 &&
+    chessPiecesString[(row - 1) * 8 + col + 1].charAt(0) === "w"
+  )
+    valid[(row - 1) * 8 + col + 1] = 3;
 }
 
 // Function to check valid squares of a Black pawn
@@ -70,6 +86,20 @@ function checkBPawn(id) {
     chessPiecesString[(row + 1) * 8 + col + 1].charAt(0) === "w"
   )
     valid[(row + 1) * 8 + col + 1] = 2;
+  if (
+    row < 7 &&
+    col > 0 &&
+    chessPiecesString[(row + 1) * 8 + col - 1].charAt(0) === "b"
+  )
+    valid[(row + 1) * 8 + col - 1] = 3;
+
+  // Check if there's an enemy piece diagonally to the right of the pawn
+  if (
+    row < 7 &&
+    col < 7 &&
+    chessPiecesString[(row + 1) * 8 + col + 1].charAt(0) === "b"
+  )
+    valid[(row + 1) * 8 + col + 1] = 3;
 }
 
 // Function to check valid squares of a Rook
@@ -86,7 +116,7 @@ function checkRook(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + col] = 2; // Mark the square as capturing move
-      }
+      } else valid[i * 8 + col] = 3;
       break; // Stop searching in this direction after encountering a piece
     } else {
       valid[i * 8 + col] = 1; // Mark the square as valid move
@@ -101,7 +131,7 @@ function checkRook(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + col] = 2;
-      }
+      } else valid[i * 8 + col] = 3;
       break;
     } else {
       valid[i * 8 + col] = 1;
@@ -116,7 +146,7 @@ function checkRook(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[row * 8 + i] = 2;
-      }
+      } else valid[row * 8 + i] = 3;
       break;
     } else {
       valid[row * 8 + i] = 1;
@@ -131,7 +161,7 @@ function checkRook(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[row * 8 + i] = 2;
-      }
+      } else valid[row * 8 + i] = 3;
       break;
     } else {
       valid[row * 8 + i] = 1;
@@ -158,7 +188,7 @@ function checkBishop(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2; // Mark the square as capturing move
-      }
+      } else valid[i * 8 + j] = 3;
       break; // Stop searching in this direction after encountering a piece
     } else {
       valid[i * 8 + j] = 1; // Mark the square as valid move
@@ -179,7 +209,7 @@ function checkBishop(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
       break;
     } else {
       valid[i * 8 + j] = 1;
@@ -200,7 +230,7 @@ function checkBishop(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
       break;
     } else {
       valid[i * 8 + j] = 1;
@@ -221,7 +251,7 @@ function checkBishop(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
       break;
     } else {
       valid[i * 8 + j] = 1;
@@ -250,7 +280,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2; // Mark the square as capturing move
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1; // Mark the square as valid move
     }
@@ -268,7 +298,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -286,7 +316,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -304,7 +334,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -322,7 +352,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -340,7 +370,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -358,7 +388,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -376,7 +406,7 @@ function checkNight(id) {
         chessPiecesString[row * 8 + col].charAt(0)
       ) {
         valid[i * 8 + j] = 2;
-      }
+      } else valid[i * 8 + j] = 3;
     } else {
       valid[i * 8 + j] = 1;
     }
@@ -433,6 +463,24 @@ function checkKing(id) {
         valid[(r + 1) * 8 + c - 1] = 1;
       if (c < 7 && chessPiecesString[(r + 1) * 8 + c + 1] === "")
         valid[(r + 1) * 8 + c + 1] = 1;
+      if (
+        r < 7 &&
+        c < 7 &&
+        chessPiecesString[(r + 1) * 8 + c + 1].charAt(0) === "w"
+      )
+        valid[(r + 1) * 8 + c + 1] = 2;
+      if (
+        r < 7 &&
+        c > 0 &&
+        chessPiecesString[(r + 1) * 8 + c - 1].charAt(0) === "b"
+      )
+        valid[(r + 1) * 8 + c - 1] = 3;
+      if (
+        r < 7 &&
+        c < 7 &&
+        chessPiecesString[(r + 1) * 8 + c + 1].charAt(0) === "b"
+      )
+        valid[(r + 1) * 8 + c + 1] = 3;
     } else {
       let r = Math.floor(sqId / 8);
       let c = Math.floor(sqId % 8);
@@ -441,6 +489,25 @@ function checkKing(id) {
         valid[(r - 1) * 8 + c - 1] = 1;
       if (c < 7 && chessPiecesString[(r - 1) * 8 + c + 1] === "")
         valid[(r - 1) * 8 + c + 1] = 1;
+      if (
+        r > 0 &&
+        c < 7 &&
+        chessPiecesString[(r - 1) * 8 + c + 1].charAt(0) === "b"
+      )
+        valid[(r - 1) * 8 + c + 1] = 2;
+      if (
+        r > 0 &&
+        c > 0 &&
+        chessPiecesString[(r - 1) * 8 + c - 1].charAt(0) === "w"
+      )
+        valid[(r - 1) * 8 + c - 1] = 3;
+
+      if (
+        r > 0 &&
+        c < 7 &&
+        chessPiecesString[(r - 1) * 8 + c + 1].charAt(0) === "w"
+      )
+        valid[(r - 1) * 8 + c + 1] = 3;
     }
   }
 
@@ -461,14 +528,16 @@ function checkKing(id) {
 
       if (
         notValid[(row + i) * 8 + col + j] === 1 ||
-        notValid[(row + i) * 8 + col + j] === 2
+        notValid[(row + i) * 8 + col + j] === 2 ||
+        notValid[(row + i) * 8 + col + j] === 3
       )
         continue;
       if (chessPiecesString[(row + i) * 8 + col + j] === "")
         valid[(row + i) * 8 + col + j] = 1; // Mark the square as a valid move
       else if (
         chessPiecesString[(row + i) * 8 + col + j].charAt(0) !==
-        chessPiecesString[id].charAt(0)
+          chessPiecesString[id].charAt(0) &&
+        notValid[(row + i) * 8 + col + j] !== 3
       )
         valid[(row + i) * 8 + col + j] = 2; // Mark the square as a capturing move
     }
