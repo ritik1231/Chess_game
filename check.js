@@ -277,28 +277,28 @@ function restrict(direction, row, col) {
         if (
           (oppoDirectionPiece === "b" || oppoDirectionPiece === "q") &&
           direction === 1 &&
-          (row <= Math.floor(i / 8) || col >= i % 8)
+          ((row <= Math.floor(i / 8) && col <= i % 8) || (row >= Math.floor(i / 8) && col >= i % 8))
         ) {
           valid[i] = 0;
         }
         if (
           (oppoDirectionPiece === "b" || oppoDirectionPiece === "q") &&
           direction === 5 &&
-          (row >= Math.floor(i / 8) || col <= i % 8)
+          ((row <= Math.floor(i / 8) && col <= i % 8) || (row >= Math.floor(i / 8) && col >= i % 8))
         ) {
           valid[i] = 0;
         }
         if (
           (oppoDirectionPiece === "b" || oppoDirectionPiece === "q") &&
           direction === 3 &&
-          (row >= Math.floor(i / 8) || col >= i % 8)
+          ((row >= Math.floor(i / 8) && col <= i % 8) || (row <= Math.floor(i / 8) && col >= i % 8))
         ) {
           valid[i] = 0;
         }
         if (
           (oppoDirectionPiece === "b" || oppoDirectionPiece === "q") &&
           direction === 7 &&
-          (row <= Math.floor(i / 8) || col <= i % 8)
+          ((row >= Math.floor(i / 8) && col <= i % 8) || (row <= Math.floor(i / 8) && col >= i % 8))
         ) {
           valid[i] = 0;
         }
