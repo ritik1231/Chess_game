@@ -42,13 +42,17 @@ function checkWPawn(id) {
   )
     valid[(row - 1) * 8 + col - 1] = 3;
 
-  // Check if there's an enemy piece diagonally to the right of the pawn
   if (
     row > 0 &&
     col < 7 &&
     chessPiecesString[(row - 1) * 8 + col + 1].charAt(0) === "w"
   )
     valid[(row - 1) * 8 + col + 1] = 3;
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a Black pawn
@@ -93,13 +97,17 @@ function checkBPawn(id) {
   )
     valid[(row + 1) * 8 + col - 1] = 3;
 
-  // Check if there's an enemy piece diagonally to the right of the pawn
   if (
     row < 7 &&
     col < 7 &&
     chessPiecesString[(row + 1) * 8 + col + 1].charAt(0) === "b"
   )
     valid[(row + 1) * 8 + col + 1] = 3;
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a Rook
@@ -167,6 +175,11 @@ function checkRook(id) {
       valid[row * 8 + i] = 1;
     }
   }
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a Bishop
@@ -257,6 +270,11 @@ function checkBishop(id) {
       valid[i * 8 + j] = 1;
     }
   }
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a Knight
@@ -413,13 +431,25 @@ function checkNight(id) {
     i = row;
     j = col;
   }
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a Queen
 function checkQueen(id) {
   // Since queen moves diagonally, horizontally and vertically
+  row = Math.floor(id / 8);
+  const col = Math.floor(id % 8);
   checkBishop(id);
   checkRook(id);
+  directionCheck(id, chance);
+  if (direction !== -1) {
+    restrict(direction, row, col);
+  }
+  direction = -1;
 }
 
 // Function to check valid squares of a King
