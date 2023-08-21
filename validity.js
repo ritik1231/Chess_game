@@ -53,6 +53,7 @@ function checkWPawn(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  if(whiteCheck==true) checkValidAfterCheck();
 }
 
 // Function to check valid squares of a Black pawn
@@ -108,6 +109,7 @@ function checkBPawn(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  if(blackCheck==true) checkValidAfterCheck();
 }
 
 // Function to check valid squares of a Rook
@@ -180,6 +182,7 @@ function checkRook(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  if(whiteCheck==true||blackCheck==true) checkValidAfterCheck();
 }
 
 // Function to check valid squares of a Bishop
@@ -275,6 +278,7 @@ function checkBishop(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  if(blackCheck==true||whiteCheck==true) checkValidAfterCheck();
 }
 
 // Function to check valid squares of a Knight
@@ -436,6 +440,7 @@ function checkNight(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  if(blackCheck==true||whiteCheck==true) checkValidAfterCheck();
 }
 
 // Function to check valid squares of a Queen
@@ -450,6 +455,7 @@ function checkQueen(id) {
     restrict(direction, row, col);
   }
   direction = -1;
+  
 }
 
 // Function to check valid squares of a King
