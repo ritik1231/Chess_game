@@ -4,6 +4,7 @@ let chessBoard = document.querySelector("#chessBoard");
 let chessBoard1 = document.querySelector("#chessBoard1");
 // Array for calculating valid moves
 let valid = [];
+let validAfterCheck=[];
 // Flag for switching turns of black and white after every move
 let chance = "white";
 // Flags for checking if castling is possible or not
@@ -12,7 +13,11 @@ let whiteK = false,
   whiteShortRook = false,
   whiteLongRook = false,
   blackShortRook = false,
-  blackLongRook = false;// Array containing the initial arrangement of chess pieces
+  blackLongRook = false;
+let whiteCheck = false,
+  blackCheck = false;
+let wKingPos = 60,
+  bKingPos = 4;
 const chessPieces = [
   brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
   bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn,
@@ -183,7 +188,6 @@ function checkMove() {
     chosenPieceID = [];
   }
   if (chosenPieceID.length === 1 && chessPiecesString[pieceID] !== "") {
-    
     pieceSelector(pieceID, row);
   }
   if (chosenPieceID.length === 2) {
@@ -196,18 +200,28 @@ function checkMove() {
       chessPiecesString[pec2] !== "" &&
       chessPiecesString[pec2].charAt(0) === chessPiecesString[pec1].charAt(0)
     ) {
-      pieceID = pec1
+      pieceID = pec1;
       row = Math.floor((63 - pieceID) / 8) + 1;
       pieceDeselector(pieceID, row);
-      chosenPieceID = []
-      pieceID = pec2
+      chosenPieceID = [];
+      pieceID = pec2;
       row = Math.floor((63 - pieceID) / 8) + 1;
-      chosenPieceID.push(pec2)
+      chosenPieceID.push(pec2);
       pieceSelector(pieceID, row);
     } else {
-      if (valid[chosenPieceID[1]] === 1 || valid[chosenPieceID[1]] === 2)
+      if (valid[chosenPieceID[1]] === 1 || valid[chosenPieceID[1]] === 2) {
+        if (chessPiecesString[chosenPieceID[0]].charAt(1) === "k") {
+          if (chessPiecesString[chosenPieceID[0]].charAt(0) === "w")
+            wKingPos = chosenPieceID[1];
+          else bKingPos = chosenPieceID[1];
+        }
+        if(blackCheck==true||whiteCheck==true){
+          blackCheck=false;
+          whiteCheck=false;
+        }
+        checker(chosenPieceID[0]);
         movePiece();
-      else {
+      } else {
         chosenPieceID.splice(1);
       }
     }
