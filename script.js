@@ -219,8 +219,8 @@ function checkMove() {
           blackCheck=false;
           whiteCheck=false;
         }
-        checker(chosenPieceID[0]);
         movePiece();
+        checker();
       } else {
         chosenPieceID.splice(1);
       }
