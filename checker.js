@@ -21,6 +21,7 @@ function checker() {
           
         ) {
           checkCount++;
+          temp[i*8+j]=1;
           flag=true;
         } 
         break;
@@ -43,6 +44,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "r"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
             checkCount++;
+            temp[i*8+j]=1;
             flag=true;
         }
         break;
@@ -65,6 +67,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "r"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
           checkCount++;
+          temp[i*8+j]=1;
           flag=true;
         }
         break;
@@ -87,6 +90,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "r"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
           checkCount++;
+          temp[i*8+j]=1;
           flag=true;
         } 
         break;
@@ -110,6 +114,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "b"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
             checkCount++;
+            temp[i*8+j]=1;
             flag=true;
         } 
         break;
@@ -133,6 +138,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "b"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
             checkCount++;
+            temp[i*8+j]=1;
             flag=true;
         } 
         break;
@@ -156,6 +162,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "b"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
           checkCount++;
+          temp[i*8+j]=1;
           flag=true;
         } 
         break;
@@ -179,6 +186,7 @@ function checker() {
             (chessPiecesString[i * 8 + j].charAt(1) === "b"||chessPiecesString[i * 8 + j].charAt(1) === "q" )
         ) {
           checkCount++;
+          temp[i*8+j]=1;
           flag=true;
         } 
         break;
@@ -203,12 +211,24 @@ function checker() {
     }
     
     if(chance=='white'&&row>2){
-      if(col-1>=0&&chessPiecesString[(row-1)*8+col-1]=='bpawn') checkCount++;
-      else if(col+1<8&&chessPiecesString[(row-1)*8+col+1]=='bpawn') checkCount++;
+      if(col-1>=0&&chessPiecesString[(row-1)*8+col-1]=='bpawn'){
+        validAfterCheck[(row-1)*8+col-1]=1;
+        checkCount++;
+      }
+      else if(col+1<8&&chessPiecesString[(row-1)*8+col+1]=='bpawn'){
+        validAfterCheck[(row-1)*8+col+1]=1;
+        checkCount++;
+      } 
     }
     else if(chance=='black'&&row<5){
-      if(col-1>=0&&chessPiecesString[(row+1)*8+col-1]=='wpawn') checkCount++;
-      else if(col+1<8&&chessPiecesString[(row+1)*8+col+1]=='wpawn') checkCount++;
+      if(col-1>=0&&chessPiecesString[(row+1)*8+col-1]=='wpawn'){
+        validAfterCheck[(row+1)*8+col-1]=1;
+        checkCount++;
+      }
+      else if(col+1<8&&chessPiecesString[(row+1)*8+col+1]=='wpawn'){
+        validAfterCheck[(row+1)*8+col+1]=1;
+        checkCount++;
+      }
     }
 
     if(checkCount>0){
