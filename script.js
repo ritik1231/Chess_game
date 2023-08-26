@@ -221,6 +221,7 @@ function checkMove() {
         }
         movePiece();
         checker();
+        if(blackCheck==true||whiteCheck==true) checkmate();
       } else {
         chosenPieceID.splice(1);
       }
