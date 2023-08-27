@@ -7,31 +7,31 @@ function checkmate(){
 
         if(chessPiecesString[i].charAt(1)=='k'){
             checkKing(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else if(chessPiecesString[i].charAt(1)=='b'){
             checkBishop(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else if(chessPiecesString[i].charAt(1)=='r'){
             checkRook(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else if(chessPiecesString[i].charAt(1)=='q'){
             checkQueen(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else if(chessPiecesString[i].charAt(1)=='n'){
             checkNight(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else if(chessPiecesString[i].charAt(0)=='b'){
             checkBPawn(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
         else{
             checkWPawn(i);
-            for(let j=0;j<64;j++) temp[j]=valid[j];
+            for(let j=0;j<64;j++) if(valid[j]!=1&&valid[j]!=2) temp[j]=valid[j];
         }
     }
     
@@ -44,7 +44,7 @@ function checkmate(){
 
     if(isCheckMate==true){
         if(chance=='white'){
-            console.log('white wins!');
+            console.log('black wins!');
         }
         else{
             console.log('white wins!');
