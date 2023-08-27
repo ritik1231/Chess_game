@@ -42,4 +42,6 @@ function checkmate(){
             console.log('white wins!');
         }
     }
+
+    valid=[];
 }
