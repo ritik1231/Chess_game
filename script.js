@@ -18,6 +18,7 @@ let whiteCheck = false,
   blackCheck = false;
 let wKingPos = 60,
   bKingPos = 4;
+let kingsqID = 1;
 const chessPieces = [
   brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
   bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn,
@@ -218,6 +219,7 @@ function checkMove() {
         if(blackCheck==true||whiteCheck==true){
           blackCheck=false;
           whiteCheck=false;
+          allSquares[kingsqID].classList.remove("kingincheck");
         }
         movePiece();
         checker();
