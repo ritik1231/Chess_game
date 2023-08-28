@@ -1,12 +1,14 @@
 function checkmate(){
     let isCheckMate=true;
 
-    for(let i=0;i<63;i++){
+    if(chance=='white') checkKing(wKingPos);
+    else checkKing(bKingPos);
+
+    for(let i=0;i<64;i++){
         if(chessPiecesString[i]==''||chessPiecesString[i].charAt(0)!==chance.charAt(0)) continue;
 
-        if(chessPiecesString[i].charAt(1)=='k'){
-            checkKing(i);
-        }
+        if(chessPiecesString[i].charAt(1)=='k') continue;
+
         else if(chessPiecesString[i].charAt(1)=='b'){
             checkBishop(i);
         }
