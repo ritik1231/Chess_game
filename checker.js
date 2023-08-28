@@ -1,12 +1,11 @@
 function checker() {
     validAfterCheck=[];
-    let squareID;
-    if(chance=='white') squareID=wKingPos
-    else squareID=bKingPos
+    if(chance=='white') kingsqID=wKingPos
+    else kingsqID=bKingPos
     let checkCount=0;
   
-    row = Math.floor(squareID / 8);
-    const col = Math.floor(squareID % 8);
+    row = Math.floor(kingsqID / 8);
+    const col = Math.floor(kingsqID % 8);
     let i = row;
     let j = col;
     let flag=false;
@@ -234,6 +233,7 @@ function checker() {
     if(checkCount>0){
       if(chance=='white') whiteCheck=true;
       else blackCheck=true;
+      allSquares[kingsqID].classList.add("kingincheck");
     }
 
     if(checkCount==2) validAfterCheck=[];
