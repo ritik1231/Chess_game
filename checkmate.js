@@ -38,10 +38,14 @@ function checkmate(){
 
     if(isCheckMate==true){
         if(chance=='white'){
-            console.log('black wins!');
+            setTimeout(function(){
+                alert('Black wins!');
+            },100);
         }
         else{
-            console.log('white wins!');
+            setTimeout(function(){
+                alert('White wins!');
+            },100);
         }
     }
 
