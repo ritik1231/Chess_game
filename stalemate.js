@@ -37,7 +37,9 @@ function stalemate(){
     }
 
     if(isStaleMate==true){
-        console.log('Draw!');
+        setTimeout(function(){
+            alert('Match Drew!');
+        },100);
     }
 
     valid=[];
