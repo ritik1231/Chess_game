@@ -47,10 +47,14 @@ function checkmate(){
 
     if(isCheckMate==true){
         if(chance=='white'){
-            alert('black wins!');
+            setTimeout(function(){
+                alert('Black Wins!');
+            },100);
         }
         else{
-            alert('white wins!');
+            setTimeout(function(){
+                alert('White Wins!');
+            },100);
         }
     }
 
