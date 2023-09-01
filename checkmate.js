@@ -1,15 +1,19 @@
 function checkmate(){
     let isCheckMate=true;
+    let temp=[];
 
     if(chance=='white') checkKing(wKingPos);
     else checkKing(bKingPos);
+    temp=valid;
 
     for(let i=0;i<64;i++){
         if(chessPiecesString[i]==''||chessPiecesString[i].charAt(0)!==chance.charAt(0)) continue;
 
         if(chessPiecesString[i].charAt(1)=='k') continue;
 
-        else if(chessPiecesString[i].charAt(1)=='b'){
+        valid=[];
+
+        if(chessPiecesString[i].charAt(1)=='b'){
             checkBishop(i);
         }
         else if(chessPiecesString[i].charAt(1)=='r'){
@@ -27,10 +31,15 @@ function checkmate(){
         else{
             checkWPawn(i);
         }
+
+        for(let i=0;i<64;i++){
+            if(temp[i]==1||temp[i]==2) continue;
+            temp[i]=valid[i];
+        }
     }
     
     for(let i=0;i<64;i++){
-        if(valid[i]==1||valid[i]==2){
+        if(temp[i]==1||temp[i]==2){
             isCheckMate=false;
             break;
         }
@@ -38,14 +47,10 @@ function checkmate(){
 
     if(isCheckMate==true){
         if(chance=='white'){
-            setTimeout(function(){
-                alert('Black wins!');
-            },100);
+            alert('black wins!');
         }
         else{
-            setTimeout(function(){
-                alert('White wins!');
-            },100);
+            alert('white wins!');
         }
     }
 
