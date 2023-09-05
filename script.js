@@ -8,6 +8,10 @@ let validAfterCheck=[];
 // Flag for switching turns of black and white after every move
 let chance = "white";
 // Flags for checking if castling is possible or not
+
+let undoPiece = [];
+let undoPieceID = [];
+let undoPieceString = [];
 let whiteK = false,
   blackK = false,
   whiteShortRook = false,
@@ -241,10 +245,15 @@ function movePiece() {
   if (whiteLongRook === false && chosenPieceID[0] == 56) whiteLongRook = true;
   if (whiteShortRook === false && chosenPieceID[0] == 63) whiteShortRook = true;
 
+  undoPieceID.push(parseInt(chosenPieceID[0]));
+  undoPieceID.push(parseInt(chosenPieceID[1]));
+  undoPiece.push(allSquares[chosenPieceID[0]].innerHTML);
+  undoPiece.push(allSquares[chosenPieceID[1]].innerHTML);
+  undoPieceString.push(chessPiecesString[chosenPieceID[0]]);
+  undoPieceString.push(chessPiecesString[chosenPieceID[1]]);
   chessPiecesString[chosenPieceID[1]] = chessPiecesString[chosenPieceID[0]];
   chessPiecesString[chosenPieceID[0]] = "";
-  allSquares[chosenPieceID[1]].innerHTML =
-    allSquares[chosenPieceID[0]].innerHTML;
+  allSquares[chosenPieceID[1]].innerHTML =  allSquares[chosenPieceID[0]].innerHTML;
   allSquares[chosenPieceID[0]].innerHTML = "";
   pieceID = chosenPieceID[0];
   row = Math.floor((63 - pieceID) / 8) + 1;
@@ -264,6 +273,53 @@ function movePiece() {
   pieceDeselector(pieceID, row);
   if (chance === "white") chance = "black";
   else chance = "white";
+ 
+}
+function undoMove(){
+  if(undoPieceID.length == 0) return;
+  let undoLen = undoPieceID.length;
+  if(undoPieceID[undoLen-1].length == 2){
+    allSquares[undoPieceID[undoLen-1][0]].innerHTML = undoPiece[undoLen-1][0];
+    allSquares[undoPieceID[undoLen-1][1]].innerHTML = undoPiece[undoLen-1][1];
+    chessPiecesString[undoPieceID[undoLen-1][1]] = undoPieceString[undoLen-1][1];
+    chessPiecesString[undoPieceID[undoLen-1][0]] = undoPieceString[undoLen-1][0];
+    if(undoPieceID[undoLen-1][0]==3) blackLongRook = false , blackK = false;
+    else if(undoPieceID[undoLen-1][0]==5) blackShortRook = false,blackK = false;
+    else if(undoPieceID[undoLen-1][0]==59) whiteLongRook = false , whiteK = false;
+    else if(undoPieceID[undoLen-1][0]==61) whiteShortRook = false , whiteK = false;
+
+    console.log(undoPieceID);
+    undoPiece.splice(undoLen-1,1);
+    undoPieceID.splice(undoLen-1,1);
+    undoPieceString.splice(undoLen-1,1);
+  }
+  undoLen = undoPieceID.length;
+  allSquares[undoPieceID[undoLen-2]].innerHTML = undoPiece[undoLen-2];
+  allSquares[undoPieceID[undoLen-1]].innerHTML = undoPiece[undoLen-1];
+  chessPiecesString[undoPieceID[undoLen-1]] = undoPieceString[undoLen-1];
+  chessPiecesString[undoPieceID[undoLen-2]] = undoPieceString[undoLen-2];
+  if (chessPiecesString[undoPieceID[undoLen-1]].charAt(1) === "k") {
+    if (chessPiecesString[undoPieceID[undoLen-1]].charAt(0) === "w")
+      wKingPos = undoPieceID[undoLen-1] ;
+    else bKingPos = undoPieceID[undoLen-1] ;
+  }
+  if (chessPiecesString[undoPieceID[undoLen-2]].charAt(1) === "k") {
+    if (chessPiecesString[undoPieceID[undoLen-2]].charAt(0) === "w")
+      wKingPos = undoPieceID[undoLen-2];
+    else bKingPos = undoPieceID[undoLen-2] ;
+  }
+  undoPiece.splice(undoLen-2,2);
+  undoPieceID.splice(undoLen-2,2);
+  undoPieceString.splice(undoLen-2,2);
+  checker();
+  if (chance === "white") chance = "black";
+  else chance = "white";
+  if(blackCheck==true||whiteCheck==true){
+    blackCheck=false;
+    whiteCheck=false;
+    allSquares[kingsqID].classList.remove("kingincheck");
+  }
+  checker();
 }
 
 function castling(chosenPieceID) {
@@ -272,6 +328,10 @@ function castling(chosenPieceID) {
     // Kingside castling
     let rookid = parseInt(chosenPieceID[1]) + 1; // Calculate the rook's new position
     // Swap positions of the king and the rook in the chessPiecesString array
+
+    undoPiece.push([allSquares[parseInt(chosenPieceID[1]) - 1].innerHTML,allSquares[rookid].innerHTML]);
+    undoPieceID.push([parseInt(chosenPieceID[1]) - 1 , rookid]);
+    undoPieceString.push([chessPiecesString[parseInt(chosenPieceID[1]) - 1],chessPiecesString[rookid]]);
     chessPiecesString[parseInt(chosenPieceID[1]) - 1] =
       chessPiecesString[rookid];
     chessPiecesString[rookid] = "";
@@ -279,10 +339,14 @@ function castling(chosenPieceID) {
     allSquares[parseInt(chosenPieceID[1]) - 1].innerHTML =
       allSquares[rookid].innerHTML;
     allSquares[rookid].innerHTML = "";
+
   } else {
     // Queenside castling
     let rookid = parseInt(chosenPieceID[1]) - 2; // Calculate the rook's new position
     // Swap positions of the king and the rook in the chessPiecesString array
+    undoPiece.push([allSquares[parseInt(chosenPieceID[1]) + 1].innerHTML,allSquares[rookid].innerHTML]);
+    undoPieceID.push([parseInt(chosenPieceID[1]) +1 , rookid]);
+    undoPieceString.push([chessPiecesString[parseInt(chosenPieceID[1]) +1],chessPiecesString[rookid]]);
     chessPiecesString[parseInt(chosenPieceID[1]) + 1] =
       chessPiecesString[rookid];
     chessPiecesString[rookid] = "";
@@ -320,7 +384,7 @@ function getQueen() {
       "whitePiece"
     );
   }
-
+  checker();
   // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
   popup.classList.replace("popupBoxshow", "popupBoxhidden");
   // Reset the chosenPieceID array
@@ -344,8 +408,9 @@ function getBishop() {
     allSquares[chosenPieceID[1]].firstChild.firstChild.classList.add(
       "whitePiece"
     );
+    
   }
-
+  checker();
   // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
   popup.classList.replace("popupBoxshow", "popupBoxhidden");
   // Reset the chosenPieceID array
@@ -370,7 +435,7 @@ function getRook() {
       "whitePiece"
     );
   }
-
+  checker();
   // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
   popup.classList.replace("popupBoxshow", "popupBoxhidden");
   // Reset the chosenPieceID array
@@ -395,7 +460,7 @@ function getNight() {
       "blackPiece"
     );
   }
-
+  checker();
   // Hide the popup by replacing "popupBoxshow" class with "popupBoxhidden"
   popup.classList.replace("popupBoxshow", "popupBoxhidden");
   // Reset the chosenPieceID array
