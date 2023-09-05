@@ -2,6 +2,12 @@ html {
   height: 100%;
   width: 100%;
 }
+#undo{
+  position: absolute;
+  top : 10px;
+  left : 620px;
+  
+}
 
 #chessBoard {
   position: absolute;
@@ -111,7 +117,7 @@ body {
   flex-wrap: wrap;
   
 }
-button {
+.popBox button {
   border : 1px solid rgb(0, 0, 0);
   width: 125px;
   height: 125px;
