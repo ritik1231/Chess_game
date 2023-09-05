@@ -66,6 +66,9 @@ svg {
   outline: 2px solid #78783a;
   outline-offset: -2.5px;
 }
+.LastMoveSquares{
+  background-color: rgba(242, 252, 96, 0.473);
+}
 
 .validTakes {
   border-radius: 20px;
