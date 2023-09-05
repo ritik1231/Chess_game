@@ -236,6 +236,23 @@ function checkMove() {
     }
   }
 }
+
+function removeLastMove(){
+  if(undoPieceID.length===0) return;
+  undoLen = undoPieceID.length;
+  if(undoPieceID[undoLen-1].length==2) undoLen-- ;
+  allSquares[undoPieceID[undoLen-2]].classList.remove("LastMoveSquares");
+  allSquares[undoPieceID[undoLen-1]].classList.remove("LastMoveSquares");
+}
+
+function addLastMove(){
+  if(undoPieceID.length===0) return;
+  undoLen = undoPieceID.length;
+  if(undoPieceID[undoLen-1].length==2) undoLen-- ;
+  allSquares[undoPieceID[undoLen-2]].classList.add("LastMoveSquares");
+  allSquares[undoPieceID[undoLen-1]].classList.add("LastMoveSquares");
+}
+
 // Function to perform the move of the selected piece
 function movePiece() {
   if (blackLongRook === false && chosenPieceID[0] == 0) blackLongRook = true;
@@ -245,6 +262,7 @@ function movePiece() {
   if (whiteLongRook === false && chosenPieceID[0] == 56) whiteLongRook = true;
   if (whiteShortRook === false && chosenPieceID[0] == 63) whiteShortRook = true;
 
+  removeLastMove();
   undoPieceID.push(parseInt(chosenPieceID[0]));
   undoPieceID.push(parseInt(chosenPieceID[1]));
   undoPiece.push(allSquares[chosenPieceID[0]].innerHTML);
@@ -271,13 +289,14 @@ function movePiece() {
      showPopup();}
   else chosenPieceID = [];
   pieceDeselector(pieceID, row);
+  addLastMove();
   if (chance === "white") chance = "black";
   else chance = "white";
- 
 }
 function undoMove(){
   if(undoPieceID.length == 0) return;
   let undoLen = undoPieceID.length;
+  removeLastMove();
   if(undoPieceID[undoLen-1].length == 2){
     allSquares[undoPieceID[undoLen-1][0]].innerHTML = undoPiece[undoLen-1][0];
     allSquares[undoPieceID[undoLen-1][1]].innerHTML = undoPiece[undoLen-1][1];
@@ -287,8 +306,6 @@ function undoMove(){
     else if(undoPieceID[undoLen-1][0]==5) blackShortRook = false,blackK = false;
     else if(undoPieceID[undoLen-1][0]==59) whiteLongRook = false , whiteK = false;
     else if(undoPieceID[undoLen-1][0]==61) whiteShortRook = false , whiteK = false;
-
-    console.log(undoPieceID);
     undoPiece.splice(undoLen-1,1);
     undoPieceID.splice(undoLen-1,1);
     undoPieceString.splice(undoLen-1,1);
@@ -320,6 +337,7 @@ function undoMove(){
     allSquares[kingsqID].classList.remove("kingincheck");
   }
   checker();
+  addLastMove();
 }
 
 function castling(chosenPieceID) {
