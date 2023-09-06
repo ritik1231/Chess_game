@@ -48,6 +48,14 @@ function checkWPawn(id) {
     chessPiecesString[(row - 1) * 8 + col + 1].charAt(0) === "w"
   )
     valid[(row - 1) * 8 + col + 1] = 3;
+
+  if(enPassantCheck===true){
+    if(j<7 && j+1==enPassntPos%8 && parseInt(id)+1===enPassntPos){
+      valid[enPassntPos-8]=1;
+    }else if(j>0 && j-1==enPassntPos%8 && parseInt(id)-1===enPassntPos){
+      valid[enPassntPos-8]=1;
+    }
+  }
   directionCheck(id, chance);
   if (direction !== -1) {
     restrict(direction, row, col);
@@ -104,6 +112,14 @@ function checkBPawn(id) {
     chessPiecesString[(row + 1) * 8 + col + 1].charAt(0) === "b"
   )
     valid[(row + 1) * 8 + col + 1] = 3;
+
+  if(enPassantCheck===true){
+      if((id%8)<7 && (id%8)+1==enPassntPos%8 && parseInt(id)+1===enPassntPos){
+        valid[enPassntPos+8]=1;
+      }else if((id%8)>0 && (id%8)-1==enPassntPos%8 && parseInt(id)-1===enPassntPos){
+        valid[enPassntPos+8]=1;
+      }
+    }
   directionCheck(id, chance);
   if (direction !== -1) {
     restrict(direction, row, col);
