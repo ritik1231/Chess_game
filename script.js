@@ -225,6 +225,23 @@ function checkMove() {
           whiteCheck=false;
           allSquares[kingsqID].classList.remove("kingincheck");
         }
+        if(chessPiecesString[chosenPieceID[0]].charAt(1)=='p'){
+          if(Math.abs(chosenPieceID[0]/8-chosenPieceID[1]/8)===2){
+            enPassantCheck=true;
+            enPassntPos=parseInt(chosenPieceID[1]);
+          }else enPassantCheck=false;
+        }else enPassantCheck=false;
+        if(chessPiecesString[chosenPieceID[0]].charAt(1)=='p'){
+          if((chosenPieceID[0]%8!==chosenPieceID[1]%8) && chessPiecesString[chosenPieceID[1]]===""){
+            if(chessPiecesString[chosenPieceID[0]].charAt(0)=='w'){
+              allSquares[parseInt(chosenPieceID[1])+8].innerHTML="";
+              chessPiecesString[parseInt(chosenPieceID[1])+8]="";
+            }else if(chessPiecesString[chosenPieceID[0]].charAt(0)=='b'){
+              allSquares[parseInt(chosenPieceID[1])-8].innerHTML="";
+              chessPiecesString[parseInt(chosenPieceID[1])-8]="";
+            }
+          }
+        }
         movePiece();
         checker();
         if(blackCheck==true||whiteCheck==true) checkmate();
