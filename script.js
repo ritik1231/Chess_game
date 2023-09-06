@@ -23,6 +23,8 @@ let whiteCheck = false,
 let wKingPos = 60,
   bKingPos = 4;
 let kingsqID = 1;
+let enPassantCheck=false;
+let enPassntPos;
 const chessPieces = [
   brook, bnight, bbishop, bqueen, bking, bbishop, bnight, brook,
   bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn, bpawn,
