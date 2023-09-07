@@ -236,9 +236,15 @@ function checkMove() {
         if(chessPiecesString[chosenPieceID[0]].charAt(1)=='p'){
           if((chosenPieceID[0]%8!==chosenPieceID[1]%8) && chessPiecesString[chosenPieceID[1]]===""){
             if(chessPiecesString[chosenPieceID[0]].charAt(0)=='w'){
+              undoPiece.push([ allSquares[parseInt(chosenPieceID[1])+8].innerHTML,""])
+              undoPieceID.push([parseInt(chosenPieceID[1])+8 , -1]);
+              undoPieceString.push([chessPiecesString[parseInt(chosenPieceID[1])+8],""]);
               allSquares[parseInt(chosenPieceID[1])+8].innerHTML="";
               chessPiecesString[parseInt(chosenPieceID[1])+8]="";
             }else if(chessPiecesString[chosenPieceID[0]].charAt(0)=='b'){
+              undoPiece.push([ allSquares[parseInt(chosenPieceID[1])-8].innerHTML,""])
+              undoPieceID.push([parseInt(chosenPieceID[1])-8 , -1]);
+              undoPieceString.push([chessPiecesString[parseInt(chosenPieceID[1])-8],""]);
               allSquares[parseInt(chosenPieceID[1])-8].innerHTML="";
               chessPiecesString[parseInt(chosenPieceID[1])-8]="";
             }
@@ -314,6 +320,11 @@ function movePiece() {
 }
 function undoMove(){
   if(undoPieceID.length == 0) return;
+  
+  if (chosenPieceID.length === 1 && chessPiecesString[chosenPieceID[0]] !== "") {
+    row = Math.floor((63 - chosenPieceID[0]) / 8) + 1;
+    pieceDeselector(chosenPieceID[0], row);
+  }
   let undoLen = undoPieceID.length;
   removeLastMove();
   if(undoPieceID[undoLen-1].length == 2){
@@ -347,6 +358,15 @@ function undoMove(){
   undoPiece.splice(undoLen-2,2);
   undoPieceID.splice(undoLen-2,2);
   undoPieceString.splice(undoLen-2,2);
+  undoLen = undoPieceID.length;
+  if(undoLen>0 && undoPieceID[undoLen-1].length == 2){
+    allSquares[undoPieceID[undoLen-1][0]].innerHTML = undoPiece[undoLen-1][0];
+    chessPiecesString[undoPieceID[undoLen-1][0]] = undoPieceString[undoLen-1][0];
+    enPassantCheck=true;
+    undoPiece.splice(undoLen-1,1);
+    undoPieceID.splice(undoLen-1,1);
+    undoPieceString.splice(undoLen-1,1);
+  }
   checker();
   if (chance === "white") chance = "black";
   else chance = "white";
