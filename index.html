@@ -1,44 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Chess</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  </head>
 
-  <body>
-    <div id="chessBoard1"></div>
-    <div id="chessBoard"></div>
-    <div id="popup" class="popupBoxhidden">
-      <div class="popBox">
-        <button id="popQueen" onclick="getQueen()">
-          <img id="popQueen" src="chessPieces/Chess_qdt45.svg" />
-        </button>
-        <button id="popBishop" onclick="getBishop()">
-          <img id="popBishop" src="chessPieces/Chess_bdt45.svg" />
-        </button>
-        <button id="popRook" onclick="getRook()">
-          <img id="popRook" src="chessPieces/Chess_rdt45.svg" />
-        </button>
-        <button id="popNight" onclick="getNight()">
-          <img id="popNight" src="chessPieces/Chess_ndt45.svg" />
-        </button>
-      </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Chess</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div id="chessBoard1"></div>
+  <div id="chessBoard"></div>
+  <div id="popup" class="popupBoxhidden">
+    <div class="popBox">
+      <button id="popQueen" onclick="getQueen()">
+        <img id="popQueen" src="chessPieces/Chess_qdt45.svg" />
+      </button>
+      <button id="popBishop" onclick="getBishop()">
+        <img id="popBishop" src="chessPieces/Chess_bdt45.svg" />
+      </button>
+      <button id="popRook" onclick="getRook()">
+        <img id="popRook" src="chessPieces/Chess_rdt45.svg" />
+      </button>
+      <button id="popNight" onclick="getNight()">
+        <img id="popNight" src="chessPieces/Chess_ndt45.svg" />
+      </button>
     </div>
-    <div id = "undo">
-      <button id="undoMove" onclick="undoMove()" style="font-size:15px">Undo <i class="fa fa-undo"></i></button>
-    </div>
-    <script src="black_pieces.js"></script>
-    <script src="white_pieces.js"></script>
-    <script src="script.js"></script>
-    <script src="validity.js"></script>
-    <script src="directioncheck.js"></script>
-    <script src="afterCheck.js"></script>
-    <script src="king.js"></script>
-    <script src="checker.js"></script>
-    <script src="checkmate.js"></script>
-    <script src="stalemate.js"></script>
-  </body>
+  </div>
+  <div id="undo">
+    <button id="undoMove" onclick="undoMove()" style="font-size:15px">Undo <i class="fa fa-undo"></i></button>
+  </div>
+  <script src="black_pieces.js"></script>
+  <script src="white_pieces.js"></script>
+  <script src="script.js"></script>
+  <script src="validity.js"></script>
+  <script src="directioncheck.js"></script>
+  <script src="afterCheck.js"></script>
+  <script src="king.js"></script>
+  <script src="checker.js"></script>
+  <script src="checkmate.js"></script>
+  <script src="stalemate.js"></script>
+</body>
+
 </html>

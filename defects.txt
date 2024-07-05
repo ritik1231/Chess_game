@@ -1,9 +1,0 @@
-1. Method of checking check is wrong because we cant track if discovered check has happened or not
-
-2. We cant keep track of number of checks happening at a time
-
-3. Not restricting kings move while check.(e.g - king cannot move to the direction of check but it can move in the opposite direction of check)
-
-4. Stalemate is pending
-
-5. Winning clause is pending

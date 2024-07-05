@@ -2,11 +2,10 @@ html {
   height: 100%;
   width: 100%;
 }
-#undo{
+#undo {
   position: absolute;
-  top : 10px;
-  left : 620px;
-  
+  top: 10px;
+  left: 620px;
 }
 
 #chessBoard {
@@ -18,7 +17,7 @@ html {
   flex-wrap: wrap;
 }
 #chessBoard1 {
-  position: fixed;
+  position: absolute;
   width: 600px;
   height: 600px;
   border: solid black 2px;
@@ -66,7 +65,7 @@ svg {
   outline: 2px solid #78783a;
   outline-offset: -2.5px;
 }
-.LastMoveSquares{
+.LastMoveSquares {
   background-color: rgba(242, 252, 96, 0.473);
 }
 
@@ -94,34 +93,31 @@ body {
   height: 75px;
   width: 75px;
 }
-.popupBoxhidden{
-  width : 1350px;
-  height : 620px;
+.popupBoxhidden {
+  width: 1350px;
+  height: 620px;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
   visibility: hidden;
-  
 }
-.popupBoxshow{
-  width : 1350px;
-  height : 600px;
+.popupBoxshow {
+  width: 1350px;
+  height: 600px;
   position: absolute;
   display: flex;
   flex-wrap: wrap;
-  
 }
-.popBox{
-  margin : auto;
-  width : 250px;
+.popBox {
+  margin: auto;
+  width: 250px;
   height: 250px;
   background-color: rgba(204, 203, 203, 0);
   display: flex;
   flex-wrap: wrap;
-  
 }
 .popBox button {
-  border : 1px solid rgb(0, 0, 0);
+  border: 1px solid rgb(0, 0, 0);
   width: 125px;
   height: 125px;
   outline: 3px solid rgb(117, 102, 102);
@@ -129,8 +125,8 @@ body {
   border-radius: 50%;
 }
 
-.popBox img{
-  width : 60px;
+.popBox img {
+  width: 60px;
   height: 60px;
   filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.6));
 }
